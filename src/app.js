@@ -1,5 +1,6 @@
 import express from 'express'
 import morgan from 'morgan'
+import administradorRoutes from './routes/administrador.routes'
 import proveedoresRoutes from './routes/proveedores.routes'
 
 const app = express();
@@ -15,7 +16,7 @@ app.use(morgan('dev'));
 
 // Routers
 //Administradores
-//app.use('/api/administrador');
+app.use('/api/administrador', administradorRoutes);
 
 //Insumos
 //app.use('/api/insumos');
