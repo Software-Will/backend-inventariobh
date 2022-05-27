@@ -1,8 +1,8 @@
-import { getConnection } from './../database/database'
+import { getConnection } from '../../database/database'
 import jwt from 'jsonwebtoken'
 
 //VALIDACION
-const validacionAdministrador = async (req, res) => {
+const authAdministrador = async (req, res) => {
     const { username, password } = req.body;
     if (username === undefined || password === undefined) {
         res.status(400).json({ message: "Verifique los campos para validar al administrador" });
@@ -29,7 +29,7 @@ const validacionAdministrador = async (req, res) => {
 }; //VARIABLE SECRETA EN UN VARIABLE DE ENTORNO
 
 //Testeo del acceso a la informacion
-const testeoToken = async (req, res) => {
+const testToken = async (req, res) => {
     console.log(req.data); //Esta es la info que mandel del verificar token, ahora puedo utilizar el objeto administrador para acceder a datos manualmente
     //console.log(req.data.nombreAdmin);
     res.json('Accediste eres admin :)');
@@ -41,7 +41,7 @@ const verificarToken = async (req, res, next) => { //Next -> Autorizacion, El to
 
     const token = req.headers.authorization.substr(7);// -> <Bearer ><Token>
     //Obtengo el token
-    //console.log(token); Se imprime en consola para validar
+    //console.log(token); //Se imprime en consola para validar
 
     //Comprobamos el almacenamiento del token en local storage con el token generado
     if (token !== '') {
@@ -54,39 +54,8 @@ const verificarToken = async (req, res, next) => { //Next -> Autorizacion, El to
     };
 };
 
-/*
-//SEL
-const selAdministrador = async (req, res) => {
-    res.send('Lo lograste admin');
-};
-
-//GET
-const getAdministrador = async (req, res) => {
-
-};
-
-//INS
-const insAdministrador = async (req, res) => {
-
-};
-
-//UPD
-const updAdministrador = async (req, res) => {
-
-};
-
-//DEL
-const delAdministrador = async (req, res) => {
-
-};*/
-
 export const methods = {
-    /*validacionAdministrador,
-    testeoToken,
+    authAdministrador,
+    testToken,
     verificarToken
-    /*selAdministrador,
-    getAdministrador,
-    insAdministrador,
-    updAdministrador,
-    delAdministrador*/
 };
