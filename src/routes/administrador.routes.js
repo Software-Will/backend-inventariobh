@@ -7,7 +7,7 @@ const router = Router();
 
 //Rutas
 router.post('/singin', authController.authAdministrador);//VALIDATOR
-router.post('/testToken', authController.verificarToken, authController.testToken);//TESTEANDO TOKEN LA FUNCION INTERMEDIARIA LA TENDRAS QUE PONER EN CADA VERBO DEL API REST -> VERIFICAR TOKEN ESTA COMO MIDLEWARE
+router.post('/testToken', authController.verifyToken, authController.testToken);//TESTEANDO TOKEN LA FUNCION INTERMEDIARIA LA TENDRAS QUE PONER EN CADA VERBO DEL API REST -> VERIFICAR TOKEN ESTA COMO MIDLEWARE
 //router.get('/', administradorController.selAdministrador);//SEL
 /*router.get('/:id',);//GET
 router.post('/',);//INS
