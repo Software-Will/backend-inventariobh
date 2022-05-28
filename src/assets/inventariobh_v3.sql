@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 28, 2022 at 01:11 AM
+-- Generation Time: May 28, 2022 at 08:02 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -154,6 +154,21 @@ INSERT INTO `insumos` (`idInsumo`, `nombreInsumo`, `descripcion`, `stock`, `cost
 -- --------------------------------------------------------
 
 --
+-- Stand-in structure for view `insumos_view`
+-- (See below for the actual view)
+--
+CREATE TABLE `insumos_view` (
+`idInsumo` int(11)
+,`nombreInsumo` varchar(255)
+,`descripcion` varchar(255)
+,`stock` int(11)
+,`costo` decimal(10,2)
+,`categoria` varchar(255)
+);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `manufactura`
 --
 
@@ -232,6 +247,15 @@ CREATE TABLE `salida` (
   `cantidadInsumos` int(11) NOT NULL,
   `valorSalida` decimal(10,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `insumos_view`
+--
+DROP TABLE IF EXISTS `insumos_view`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `insumos_view`  AS SELECT `i`.`idInsumo` AS `idInsumo`, `i`.`nombreInsumo` AS `nombreInsumo`, `i`.`descripcion` AS `descripcion`, `i`.`stock` AS `stock`, `i`.`costo` AS `costo`, `c`.`nombreCategoria` AS `categoria` FROM (`insumos` `i` join `categoria` `c` on(`i`.`idCategoria` = `c`.`idCategoria`))  ;
 
 --
 -- Indexes for dumped tables

@@ -44,7 +44,7 @@ const insProveedores = async (req, res) => {
     } catch (error) {
         res.status(500);
         res.send(error.message);
-    }
+    };
 };
 
 //UPD
@@ -55,7 +55,7 @@ const updProveedores = async (req, res) => {
         if (nombreProveedor === undefined || ruc === undefined ||
             telefono === undefined || ciudad === undefined ||
             direccion === undefined) {
-            res.status(400).json({ message: "Verifique los campos para registrar un proveedor" });
+            res.status(400).json({ message: "Verifique los campos para actualizar un proveedor" });
         };
         const proveedores = { nombreProveedor, ruc, telefono, ciudad, direccion };
         const connection = await getConnection();
@@ -78,7 +78,7 @@ const delProveedores = async (req, res) => {
     } catch (error) {
         res.status(500);
         res.send(error.message);
-    }
+    };
 };
 
 export const methods = {

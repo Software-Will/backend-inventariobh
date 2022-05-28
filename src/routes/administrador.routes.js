@@ -6,8 +6,8 @@ import { methods as authController } from '../controllers/auth/auth.controller'
 const router = Router();
 
 //Rutas
-router.post('/singin', authController.authAdministrador);//VALIDATOR
-router.post('/testToken', authController.verifyToken, authController.testToken);//TESTEANDO TOKEN LA FUNCION INTERMEDIARIA LA TENDRAS QUE PONER EN CADA VERBO DEL API REST -> VERIFICAR TOKEN ESTA COMO MIDLEWARE
+router.post('/singin', authController.authAdministrador); //Generar jwt para login
+router.post('/testToken', authController.verifyToken, authController.testToken);//Implemenacion jwt como Middleware en rutas -> testToken : Solo ClientAPI
 //router.get('/', administradorController.selAdministrador);//SEL
 /*router.get('/:id',);//GET
 router.post('/',);//INS

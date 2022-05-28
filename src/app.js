@@ -3,6 +3,7 @@ import morgan from 'morgan'
 import cors from 'cors'
 import administradorRoutes from './routes/administrador.routes'
 import proveedoresRoutes from './routes/proveedores.routes'
+import insumosRoutes from './routes/insumos.routes'
 
 const app = express();
 
@@ -21,7 +22,7 @@ app.use(morgan('dev'));
 app.use('/api/administrador', administradorRoutes);
 
 //Insumos
-//app.use('/api/insumos');
+app.use('/api/insumos', insumosRoutes);
 
 //Categoria
 //app.use('/api/categoria');
