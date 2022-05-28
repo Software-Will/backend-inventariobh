@@ -4,6 +4,7 @@ import cors from 'cors'
 import administradorRoutes from './routes/administrador.routes'
 import proveedoresRoutes from './routes/proveedores.routes'
 import insumosRoutes from './routes/insumos.routes'
+import categoriaRoutes from './routes/categoria.routes'
 
 const app = express();
 
@@ -25,7 +26,7 @@ app.use('/api/administrador', administradorRoutes);
 app.use('/api/insumos', insumosRoutes);
 
 //Categoria
-//app.use('/api/categoria');
+app.use('/api/categoria', categoriaRoutes);
 
 //Proveedores
 app.use('/api/proveedores', proveedoresRoutes);
