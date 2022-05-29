@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 28, 2022 at 08:02 AM
+-- Generation Time: May 30, 2022 at 01:38 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -187,8 +187,8 @@ INSERT INTO `manufactura` (`idManufactura`, `nombreManufactura`) VALUES
 (3, 'Acero Inoxidable'),
 (4, 'Acero de Aleación'),
 (5, 'Acero Galvanizado'),
-(6, 'Acero de Laminado'),
-(7, 'Acero de Corrugado');
+(6, 'Acero Laminado'),
+(7, 'Acero Corrugado');
 
 -- --------------------------------------------------------
 
@@ -225,11 +225,11 @@ CREATE TABLE `proveedores` (
 --
 
 INSERT INTO `proveedores` (`idProveedor`, `nombreProveedor`, `ruc`, `telefono`, `ciudad`, `direccion`) VALUES
-(1, 'Materias Primas y Quimicos MG', '17482910311', '987654321', 'Lima', 'Av. 15 de Julio Mz. A Lt. 39 Zona A (Huaycan)'),
-(2, 'NewChem & Commerce', '19853189411', '980065987', 'Lima', 'Av. Industrial 3515 (Independencia)'),
-(3, 'Materias Primas JK', '15834523511', '999767356', 'Lima', 'Av. Carretera Central Esq. Av.La Estrella, Km 10.5 (Ate)'),
-(4, 'IMPN', '14267341211', '912345678', 'Lima', 'Av. Oscar Benavides 5185 (Callao)'),
-(5, 'Procesadora de Materias Primas Industria SAC', '15635120991', '922675908', 'Lima', 'Av. Los Incas 205 Mz. A Lt. 7 Ex. Av. Circunvalacion (Ate)'),
+(1, 'Materias Primas y Quimicos MG', '17482910311', '987654321', 'Huaycan', 'Av. 15 de Julio Mz. A Lt. 39 Zona A'),
+(2, 'NewChem & Commerce', '19853189411', '980065987', 'Independencia', 'Av. Industrial 3515'),
+(3, 'Materias Primas JK', '15834523511', '999767356', 'Ate', 'Av. Carretera Central Esq. Av.La Estrella, Km 10.5'),
+(4, 'IMPN', '14267341211', '912345678', 'Callao', 'Av. Oscar Benavides 5185'),
+(5, 'Procesadora de Materias Primas Industria SAC', '15635120991', '922675908', 'Ate', 'Av. Los Incas 205 Mz. A Lt. 7 Ex. Av. Circunvalacion'),
 (6, 'testUpdate', 'tes', 'test', 'test', 'test'),
 (8, 'testProveedor3', 'tes', 'test', 'test', 'test');
 
@@ -383,7 +383,7 @@ ALTER TABLE `entrada`
 -- AUTO_INCREMENT for table `insumos`
 --
 ALTER TABLE `insumos`
-  MODIFY `idInsumo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `idInsumo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `manufactura`
