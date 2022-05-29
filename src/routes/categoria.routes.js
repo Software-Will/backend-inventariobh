@@ -3,6 +3,8 @@ import { methods as categoriaController } from './../controllers/categoria.contr
 
 const router = Router();
 //Routes
-router.get('/idCategoria/:nombreCat', categoriaController.getIdByCat);//id categoria por nombre
+router.get('/', categoriaController.selCategoria); //SEL
+router.get('/:id', categoriaController.getCategoria); //GET return data por id
+router.get('/nomCat/:nombreCat', categoriaController.getIdByNomCat);//return id por nomCategoria -> Metalico (1) | No Metalico (2)
 
 export default router;

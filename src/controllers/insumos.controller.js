@@ -1,6 +1,6 @@
 import { getConnection } from './../database/database'
 
-//VIEW INSUMOS -> Vista Principal del Panel de Insumos
+//VIEW INSUMOS -> Vista Principal del Panel de Insumos se usara esta funcion en Angular
 const viewInsumos = async (req, res) => {
     try {
         const connection = await getConnection(); //Conexion
@@ -13,7 +13,7 @@ const viewInsumos = async (req, res) => {
     };
 };
 
-//SEL
+//SEL -> Esta funcion solo es para el Client API
 const selInsumos = async (req, res) => {
     try {
         const connection = await getConnection(); //Conexion
@@ -39,7 +39,7 @@ const getInsumos = async (req, res) => {
     }
 };
 
-//INS
+//INS -> Obtendras el IdCategoria en la funcion getIdByNomCat en el controller Categoria (Fijate en su route)
 const insInsumos = async (req, res) => {
     try {
         console.log(req.body);
