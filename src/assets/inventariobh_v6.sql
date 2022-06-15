@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 15, 2022 at 11:57 AM
+-- Generation Time: Jun 16, 2022 at 12:56 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -88,7 +88,17 @@ INSERT INTO `detallepedido` (`idDetallePedido`, `idPedido`, `idInsumo`, `cantida
 (2, 1, 11, 1000),
 (3, 1, 10, 1000),
 (4, 1, 5, 1000),
-(5, 1, 3, 1000);
+(5, 1, 3, 1000),
+(8, 1, 2, 200),
+(9, 1, 1, 3000),
+(10, 1, 3, 8900),
+(11, 1, 11, 7000),
+(12, 1, 5, 200),
+(13, 1, 5, 200),
+(14, 1, 5, 200),
+(15, 1, 2, 200),
+(16, 1, 8, 500),
+(17, 1, 8, 500);
 
 -- --------------------------------------------------------
 
@@ -100,7 +110,9 @@ CREATE TABLE `detallepedido_view` (
 `idDetallePedido` int(11)
 ,`idPedido` int(11)
 ,`nombreInsumo` varchar(255)
+,`costoInsumo` decimal(10,2)
 ,`cantidadPedido` int(11)
+,`costoDetalle` decimal(20,2)
 );
 
 -- --------------------------------------------------------
@@ -265,7 +277,8 @@ CREATE TABLE `pedido` (
 --
 
 INSERT INTO `pedido` (`idPedido`, `idProveedor`, `idAdmin`, `idEstado`, `fecha`, `descripcion`, `totalInsumos`, `costoPedido`) VALUES
-(1, 1, 1, 1, '2022-06-15 03:26:59', '...', 5000, '8000.00');
+(1, 1, 1, 1, '2022-06-15 03:26:59', '...', 17, '1578000.00'),
+(2, 1, 1, 2, '2022-06-15 22:53:11', '...', 17, '5000.00');
 
 -- --------------------------------------------------------
 
@@ -334,7 +347,7 @@ CREATE TABLE `salida` (
 --
 DROP TABLE IF EXISTS `detallepedido_view`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `detallepedido_view`  AS SELECT `d`.`idDetallePedido` AS `idDetallePedido`, `p`.`idPedido` AS `idPedido`, `i`.`nombreInsumo` AS `nombreInsumo`, `d`.`cantidadPedido` AS `cantidadPedido` FROM ((`detallepedido` `d` join `pedido` `p`) join `insumos` `i` on(`d`.`idPedido` = `p`.`idPedido` and `d`.`idInsumo` = `i`.`idInsumo`))  ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `detallepedido_view`  AS SELECT `d`.`idDetallePedido` AS `idDetallePedido`, `p`.`idPedido` AS `idPedido`, `i`.`nombreInsumo` AS `nombreInsumo`, `i`.`costo` AS `costoInsumo`, `d`.`cantidadPedido` AS `cantidadPedido`, `i`.`costo`* `d`.`cantidadPedido` AS `costoDetalle` FROM ((`detallepedido` `d` join `pedido` `p`) join `insumos` `i` on(`d`.`idPedido` = `p`.`idPedido` and `d`.`idInsumo` = `i`.`idInsumo`))  ;
 
 -- --------------------------------------------------------
 
@@ -466,7 +479,7 @@ ALTER TABLE `categoria`
 -- AUTO_INCREMENT for table `detallepedido`
 --
 ALTER TABLE `detallepedido`
-  MODIFY `idDetallePedido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `idDetallePedido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `detallesalida`
@@ -502,7 +515,7 @@ ALTER TABLE `manufactura`
 -- AUTO_INCREMENT for table `pedido`
 --
 ALTER TABLE `pedido`
-  MODIFY `idPedido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idPedido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `proveedores`
