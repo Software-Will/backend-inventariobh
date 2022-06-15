@@ -62,6 +62,8 @@ const insDetallePedido = async (req, res) => {
             // console.log(auxCantPedido);
             const idInsumo = auxIdsInsumos[i];
             const cantidadPedido = auxCantPedido[i];
+            const auxVal = [idPedido, idInsumo, cantidadPedido];
+            if (auxVal.includes(undefined)) res.status(400).json({ message: "Verifique los campos para registrar detalles del pedido" });
             const detallepedido = { idPedido, idInsumo, cantidadPedido };
             //console.log(detallepedido);
             const result = await connection.query('INSERT INTO detallepedido SET ?', detallepedido);

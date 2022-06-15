@@ -33,6 +33,19 @@ const getPedido = async (req, res) => {
  *? const fecha = new Date().toISOString();
  * totalInsumo :: detalle++
  * costoPedido :: costoPedido += costoDetalle
+ * 
+ * 
+ * {
+		"proveedor": "Materias Primas y Quimicos MG",
+		"administrador": "William Chávez",
+		"descripcion": "...",
+		"totalInsumos": 17,
+		"costoPedido": 5000
+}
+ * 
+ * 
+ * 
+ * 
  */
 const insPedido = async (req, res) => {
     try {
