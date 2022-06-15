@@ -44,9 +44,8 @@ const insInsumos = async (req, res) => {
     try {
         console.log(req.body);
         const { nombreInsumo, descripcion, stock, costo, idCategoria } = req.body;
-        if (nombreInsumo === undefined || descripcion === undefined || stock === undefined || costo === undefined || idCategoria === undefined) {
-            res.status(400).json({ message: 'Verifique los campos para registrar un insumo' });
-        };
+        const aux = [nombreInsumo, descripcion, stock, costo, idCategoria];
+        if (aux.includes(undefined)) res.status(400).json({ message: 'Verifique los campos para registrar un insumo' });
         const insumo = { nombreInsumo, descripcion, stock, costo, idCategoria };
         const connection = await getConnection();
         const result = await connection.query('INSERT INTO insumos SET ?', insumo);
@@ -62,9 +61,8 @@ const updInsumos = async (req, res) => {
     try {
         const { id } = req.params;
         const { nombreInsumo, descripcion, stock, costo, idCategoria } = req.body;
-        if (nombreInsumo === undefined || descripcion === undefined || stock === undefined || costo === undefined || idCategoria === undefined) {
-            res.status(400).json({ message: 'Verifique los campos para actualizar un insumo' });
-        };
+        const aux = [nombreInsumo, descripcion, stock, costo, idCategoria];
+        if (aux.includes(undefined)) res.status(400).json({ message: 'Verifique los campos para actualizar un insumo' });
         const insumo = { nombreInsumo, descripcion, stock, costo, idCategoria };
         const connection = await getConnection();
         const result = await connection.query('UPDATE insumos SET ? WHERE idInsumo = ?', [insumo, id]);

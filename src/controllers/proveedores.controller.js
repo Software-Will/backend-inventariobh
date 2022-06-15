@@ -32,11 +32,8 @@ const insProveedores = async (req, res) => {
     try {
         console.log(req.body); //Se imprime el contenido que se envio
         const { nombreProveedor, ruc, telefono, ciudad, direccion } = req.body; //Desestructuracion del body de la peticion
-        if (nombreProveedor === undefined || ruc === undefined ||
-            telefono === undefined || ciudad === undefined ||
-            direccion === undefined) {
-            res.status(400).json({ message: "Verifique los campos para registrar un proveedor" });
-        };//Validamos los campos enviados, no pueden ser vacios
+        const aux = [nombreProveedor, ruc, telefono, ciudad, direccion];
+        if (aux.includes(undefined)) res.status(400).json({ message: "Verifique los campos para registrar un proveedor" });   //Validamos los campos enviados, no pueden ser vacios
         const proveedores = { nombreProveedor, ruc, telefono, ciudad, direccion }; //Objeto proovedores 
         const connection = await getConnection();
         const result = await connection.query('INSERT INTO proveedores SET ?', proveedores);
@@ -52,11 +49,8 @@ const updProveedores = async (req, res) => {
     try {
         const { id } = req.params;
         const { nombreProveedor, ruc, telefono, ciudad, direccion } = req.body;
-        if (nombreProveedor === undefined || ruc === undefined ||
-            telefono === undefined || ciudad === undefined ||
-            direccion === undefined) {
-            res.status(400).json({ message: "Verifique los campos para actualizar un proveedor" });
-        };
+        const aux = [nombreProveedor, ruc, telefono, ciudad, direccion];
+        if (aux.includes(undefined)) res.status(400).json({ message: "Verifique los campos para actualizar un proveedor" });
         const proveedores = { nombreProveedor, ruc, telefono, ciudad, direccion };
         const connection = await getConnection();
         const result = await connection.query('UPDATE proveedores SET ? WHERE idProveedor = ?', [proveedores, id]);
