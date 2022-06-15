@@ -6,6 +6,8 @@ import proveedoresRoutes from './routes/proveedores.routes'
 import insumosRoutes from './routes/insumos.routes'
 import categoriaRoutes from './routes/categoria.routes'
 import manufacturaRoutes from './routes/manufactura.routes'
+import pedidoRoutes from './routes/pedido.routes'
+import detallePedidoRoutes from './routes/detallePedido.routes'
 
 const app = express();
 
@@ -19,19 +21,15 @@ app.use(cors());
 app.use(morgan('dev'));
 
 // Routers
-//Administradores
 app.use('/api/administrador', administradorRoutes);
-
-//Insumos
 app.use('/api/insumos', insumosRoutes);
-
-//Categoria
 app.use('/api/categoria', categoriaRoutes);
-
-//Proveedores
 app.use('/api/proveedores', proveedoresRoutes);
-
-//Manufactura
 app.use('/api/manufactura', manufacturaRoutes);
+
+//!
+app.use('/api/pedido', pedidoRoutes);
+
+app.use('/api/detallePedido', detallePedidoRoutes);
 
 export default app;
