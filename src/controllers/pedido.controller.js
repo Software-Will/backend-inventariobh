@@ -28,9 +28,6 @@ const getPedido = async (req, res) => {
 // INS
 /**
  * Enviaras el nombre del proveedor y administrador al back
- *? Por defecto el idEstado que me enviaras es 2 :: Pendiente
- *? La fecha me lo envias desde el front con:
- *? const fecha = new Date().toISOString();
  * totalInsumo :: detalle++
  * costoPedido :: costoPedido += costoDetalle
  * 
@@ -71,18 +68,46 @@ const insPedido = async (req, res) => {
 }
 
 
+/**
+ * Upd Pedido -> Proveedor :: envia el nombre no id - Descripcion
+ */
+const updPedido = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const { proveedor, descripcion } = req.body;
+        const connection = await getConnection();
+        const auxIdPedido = await connection.query('SELECT idProveedor FROM proveedores WHERE nombreProveedor = ?', proveedor);
+        const idProveedor = auxIdPedido[0].idProveedor;
+        const pedido = { idProveedor, descripcion };
+        const result = await connection.query('UPDATE pedido SET ? WHERE idPedido = ?', [pedido, id]);
+        res.json(result);
+    } catch (err) {
+        res.status(500);
+        res.send(err.message);
+    }
+}
 
 
-
-
-
-
-
-
-
+/**
+ * Del Pedido -> Se elimna el pedido y todos sus detalles pedidos
+ * Relacion CASCADE delete :: update
+ */
+const delPedido = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const connection = await getConnection();
+        const result = await connection.query('DELETE FROM pedido WHERE idPedido = ?', id);
+        res.json(result);
+    } catch (error) {
+        res.status(500);
+        res.send(error.message);
+    };
+}
 
 export const methods = {
     selPedido,
     getPedido,
-    insPedido
+    insPedido,
+    updPedido,
+    delPedido
 }

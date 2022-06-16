@@ -11,6 +11,9 @@ const selDetallePedido = async (req, res) => {
     }
 }
 
+/**
+ * Envias el id del pedido no del detallePedido
+ */
 const getDetallePedidoxPedido = async (req, res) => {
     try {
         const { id } = req.params;
@@ -28,17 +31,14 @@ const getDetallePedidoxPedido = async (req, res) => {
  * Example: Para hacer las prubeas fijate en la BD los idPedidos existentes, si no no funcionara, en el front enviar por push() y borras por pop()
  * [
     {
-        "idPedido": 1,
         "nombreInsumo": "Hierro",
         "cantidadPedido": 1000
     },
     {
-        "idPedido": 1,
         "nombreInsumo": "Níquel",
         "cantidadPedido": 1000
     },
     {
-        "idPedido": 1,
         "nombreInsumo": "Cromo",
         "cantidadPedido": 1000
     }
@@ -68,7 +68,7 @@ const insDetallePedido = async (req, res) => {
             if (auxVal.includes(undefined)) res.status(400).json({ message: "Verifique los campos para registrar detalles del pedido" });
             const detallepedido = { idPedido, idInsumo, cantidadPedido };
             //console.log(detallepedido);
-            await connection.query('INSERT INTO detallepedido SET ?', detallepedido);
+            await connection.query('INSERT INTO detallepedido SET ?', detallepedido); //Insert data object
         }
         res.json('Detalles insertados :)');
     } catch (err) {

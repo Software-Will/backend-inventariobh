@@ -67,7 +67,7 @@ const delProveedores = async (req, res) => {
         console.log(req.params); //Se imprime el id
         const { id } = req.params;
         const connection = await getConnection();
-        const result = connection.query('DELETE FROM proveedores WHERE idProveedor = ?', id);
+        const result = await connection.query('DELETE FROM proveedores WHERE idProveedor = ?', id);
         res.json(result);
     } catch (error) {
         res.status(500);
