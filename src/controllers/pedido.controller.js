@@ -36,11 +36,11 @@ const getPedido = async (req, res) => {
  * 
  * 
  * {
-		"proveedor": "Materias Primas y Quimicos MG",
-		"administrador": "William Chávez",
-		"descripcion": "...",
-		"totalInsumos": 17,
-		"costoPedido": 5000
+        "proveedor": "Materias Primas y Quimicos MG",
+        "administrador": "William Chávez",
+        "descripcion": "...",
+        "totalInsumos": 17,
+        "costoPedido": 5000
 }
  * 
  * 

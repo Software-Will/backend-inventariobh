@@ -47,10 +47,12 @@ const getDetallePedidoxPedido = async (req, res) => {
 const insDetallePedido = async (req, res) => {
     try {
         const data = req.body;
-        const idPedido = data[0].idPedido; //Dato unico para todos los detalles de un pedido
-        const connection = await getConnection();
         const auxIdsInsumos = [];
         const auxCantPedido = [];
+        const connection = await getConnection();
+        const auxIdPedido = await connection.query('SELECT idPedido FROM pedido ORDER by idPedido DESC LIMIT 1'); //Dato unico para todos los detalles de un pedido
+        const idPedido = auxIdPedido[0].idPedido;
+        //console.log(idPedido);
         for (let i = 0; i < data.length; i++) { //For para obtener los idsInsumos y obtener la cantidad de pedidos por detallePedido
             const auxId = await connection.query('SELECT idInsumo FROM insumos WHERE nombreInsumo = ?', data[i].nombreInsumo);
             auxIdsInsumos.push(auxId[0].idInsumo);
@@ -66,9 +68,9 @@ const insDetallePedido = async (req, res) => {
             if (auxVal.includes(undefined)) res.status(400).json({ message: "Verifique los campos para registrar detalles del pedido" });
             const detallepedido = { idPedido, idInsumo, cantidadPedido };
             //console.log(detallepedido);
-            const result = await connection.query('INSERT INTO detallepedido SET ?', detallepedido);
-            res.json(result);
+            await connection.query('INSERT INTO detallepedido SET ?', detallepedido);
         }
+        res.json('Detalles insertados :)');
     } catch (err) {
         res.status(500);
         res.send(err.message);
