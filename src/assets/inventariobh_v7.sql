@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 16, 2022 at 12:56 AM
+-- Generation Time: Jun 16, 2022 at 06:37 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -45,7 +45,7 @@ INSERT INTO `administrador` (`idAdmin`, `nombreAdmin`, `telefono`, `mail`, `user
 (2, 'Merly Vallejos', '965874234', 'mariposita@gmail.com', 'mervh', 'mervh'),
 (3, 'Adriana Quijano', '945687234', 'adri@gmail.com', 'adriqs', 'adriqs'),
 (4, 'Braya Alocen', '935747395', 'braya@gmail.com', 'braya', 'braya'),
-(5, 'Anthony Terrel', '946941572', 'anthony@gmail.com', 'anthony', 'anthony');
+(5, 'Anthony Terrel', '999999999', 'anthony@gmail.com', 'anthony', 'anthony');
 
 -- --------------------------------------------------------
 
@@ -98,7 +98,137 @@ INSERT INTO `detallepedido` (`idDetallePedido`, `idPedido`, `idInsumo`, `cantida
 (14, 1, 5, 200),
 (15, 1, 2, 200),
 (16, 1, 8, 500),
-(17, 1, 8, 500);
+(17, 1, 8, 500),
+(18, 2, 2, 500),
+(19, 2, 8, 500),
+(20, 2, 11, 500),
+(31, 3, 2, 10000),
+(32, 3, 11, 13000),
+(33, 3, 2, 10000),
+(34, 3, 11, 13000),
+(35, 3, 2, 10000),
+(36, 3, 11, 13000),
+(37, 3, 3, 1500),
+(38, 3, 8, 1500),
+(39, 3, 2, 10000),
+(40, 3, 11, 13000),
+(41, 4, 2, 10000),
+(42, 4, 2, 10000),
+(43, 4, 2, 10000),
+(44, 4, 2, 10000),
+(45, 4, 2, 10000),
+(46, 4, 2, 10000),
+(47, 4, 8, 3000),
+(48, 4, 2, 10000),
+(49, 4, 8, 3000),
+(52, 5, 2, 10000),
+(53, 5, 8, 3000),
+(54, 5, 2, 10000),
+(55, 5, 8, 3000),
+(56, 5, 2, 10000),
+(57, 5, 8, 3000),
+(58, 5, 2, 10000),
+(59, 5, 8, 3000),
+(60, 5, 3, 400),
+(61, 5, 2, 10000),
+(62, 5, 8, 3000),
+(63, 5, 3, 400),
+(64, 5, 2, 10000),
+(65, 5, 8, 3000),
+(66, 5, 3, 400),
+(67, 5, 2, 10000),
+(68, 5, 8, 3000),
+(69, 5, 3, 400),
+(70, 5, 2, 10000),
+(71, 5, 8, 3000),
+(72, 5, 3, 400),
+(73, 5, 2, 10000),
+(74, 5, 8, 3000),
+(75, 5, 2, 400),
+(76, 5, 2, 10000),
+(77, 5, 8, 3000),
+(78, 5, 2, 400),
+(79, 5, 2, 10000),
+(80, 5, 8, 3000),
+(81, 5, 2, 400),
+(82, 5, 2, 10000),
+(83, 5, 8, 3000),
+(84, 5, 2, 400),
+(85, 5, 2, 10000),
+(86, 5, 8, 3000),
+(87, 5, 2, 400),
+(88, 5, 2, 10000),
+(89, 5, 8, 3000),
+(90, 5, 2, 400),
+(91, 5, 2, 10000),
+(92, 5, 8, 3000),
+(93, 5, 2, 400),
+(94, 5, 2, 10000),
+(95, 5, 8, 3000),
+(96, 5, 2, 400),
+(97, 5, 2, 10000),
+(98, 5, 8, 3000),
+(99, 5, 2, 400),
+(100, 5, 2, 10000),
+(101, 5, 8, 3000),
+(102, 5, 2, 400),
+(103, 5, 2, 10000),
+(104, 5, 8, 3000),
+(105, 5, 2, 400),
+(106, 5, 2, 10000),
+(107, 5, 8, 3000),
+(108, 5, 2, 400),
+(109, 5, 2, 10000),
+(110, 5, 8, 3000),
+(111, 5, 2, 400),
+(112, 5, 2, 10000),
+(113, 5, 8, 3000),
+(114, 5, 2, 400),
+(115, 5, 2, 10000),
+(116, 5, 8, 3000),
+(117, 5, 2, 400),
+(118, 5, 2, 10000),
+(119, 5, 8, 3000),
+(120, 5, 2, 400),
+(121, 5, 2, 10000),
+(122, 5, 8, 3000),
+(123, 5, 2, 400),
+(124, 5, 2, 10000),
+(125, 5, 8, 3000),
+(126, 5, 2, 400),
+(127, 5, 2, 10000),
+(128, 5, 8, 3000),
+(129, 5, 2, 400),
+(130, 5, 2, 10000),
+(131, 5, 8, 3000),
+(132, 5, 2, 400),
+(133, 5, 2, 10000),
+(134, 5, 8, 3000),
+(135, 5, 2, 400),
+(136, 5, 2, 10000),
+(137, 5, 8, 3000),
+(138, 5, 2, 400),
+(139, 5, 3, 10000),
+(140, 5, 8, 3000),
+(141, 5, 2, 400),
+(142, 5, 3, 10000),
+(143, 5, 8, 3000),
+(144, 5, 2, 400),
+(145, 5, 3, 10000),
+(146, 5, 8, 3000),
+(147, 5, 2, 400),
+(148, 5, 3, 10000),
+(149, 5, 8, 3000),
+(150, 5, 2, 400),
+(151, 5, 3, 10000),
+(152, 5, 8, 3000),
+(153, 5, 2, 400),
+(154, 5, 3, 10000),
+(155, 5, 8, 3000),
+(156, 5, 2, 400),
+(157, 5, 3, 10000),
+(158, 5, 8, 3000),
+(159, 5, 2, 400);
 
 -- --------------------------------------------------------
 
@@ -139,16 +269,15 @@ CREATE TABLE `entrada` (
   `fecha` datetime NOT NULL,
   `idAdmin` int(11) NOT NULL,
   `idProveedor` int(11) NOT NULL,
-  `idPedido` int(11) NOT NULL,
-  `valorEntrada` decimal(10,2) NOT NULL
+  `idPedido` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `entrada`
 --
 
-INSERT INTO `entrada` (`idEntrada`, `fecha`, `idAdmin`, `idProveedor`, `idPedido`, `valorEntrada`) VALUES
-(1, '2022-06-17 03:32:09', 1, 1, 1, '8000.00');
+INSERT INTO `entrada` (`idEntrada`, `fecha`, `idAdmin`, `idProveedor`, `idPedido`) VALUES
+(1, '2022-06-17 03:32:09', 1, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -277,8 +406,11 @@ CREATE TABLE `pedido` (
 --
 
 INSERT INTO `pedido` (`idPedido`, `idProveedor`, `idAdmin`, `idEstado`, `fecha`, `descripcion`, `totalInsumos`, `costoPedido`) VALUES
-(1, 1, 1, 1, '2022-06-15 03:26:59', '...', 17, '1578000.00'),
-(2, 1, 1, 2, '2022-06-15 22:53:11', '...', 17, '5000.00');
+(1, 4, 1, 1, '2022-06-15 03:26:59', '1111111111', 17, '1578000.00'),
+(2, 1, 1, 2, '2022-06-15 22:53:11', '...', 17, '5000.00'),
+(3, 4, 3, 2, '2022-06-16 01:27:18', '...', 3, '600.00'),
+(4, 4, 3, 2, '2022-06-16 01:43:36', '...', 20, '600.00'),
+(5, 4, 1, 2, '2022-06-16 02:05:03', '...', 20, '600.00');
 
 -- --------------------------------------------------------
 
@@ -356,7 +488,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `entrada_view`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `entrada_view`  AS SELECT `e`.`idEntrada` AS `idEntrada`, `p`.`nombreProveedor` AS `nombreProveedor`, `o`.`fecha` AS `fechaPedido`, `e`.`fecha` AS `fechaEntrada`, `a`.`nombreAdmin` AS `administrador`, `e`.`valorEntrada` AS `valorEntrada` FROM (((`entrada` `e` join `proveedores` `p`) join `administrador` `a`) join `pedido` `o` on(`e`.`idProveedor` = `p`.`idProveedor` and `e`.`idAdmin` = `a`.`idAdmin` and `e`.`idPedido` = `o`.`idPedido`))  ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `entrada_view`  AS SELECT `e`.`idEntrada` AS `idEntrada`, `p`.`nombreProveedor` AS `nombreProveedor`, `o`.`fecha` AS `fechaPedido`, `e`.`fecha` AS `fechaEntrada`, `a`.`nombreAdmin` AS `administrador`, `o`.`costoPedido` AS `valorEntrada` FROM (((`entrada` `e` join `proveedores` `p`) join `administrador` `a`) join `pedido` `o` on(`e`.`idProveedor` = `p`.`idProveedor` and `e`.`idAdmin` = `a`.`idAdmin` and `e`.`idPedido` = `o`.`idPedido`))  ;
 
 -- --------------------------------------------------------
 
@@ -479,7 +611,7 @@ ALTER TABLE `categoria`
 -- AUTO_INCREMENT for table `detallepedido`
 --
 ALTER TABLE `detallepedido`
-  MODIFY `idDetallePedido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `idDetallePedido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=172;
 
 --
 -- AUTO_INCREMENT for table `detallesalida`
@@ -515,7 +647,7 @@ ALTER TABLE `manufactura`
 -- AUTO_INCREMENT for table `pedido`
 --
 ALTER TABLE `pedido`
-  MODIFY `idPedido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `idPedido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `proveedores`
@@ -537,8 +669,8 @@ ALTER TABLE `salida`
 -- Constraints for table `detallepedido`
 --
 ALTER TABLE `detallepedido`
-  ADD CONSTRAINT `detallepedido_ibfk_1` FOREIGN KEY (`idPedido`) REFERENCES `pedido` (`idPedido`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `detallepedido_ibfk_2` FOREIGN KEY (`idInsumo`) REFERENCES `insumos` (`idInsumo`) ON DELETE NO ACTION ON UPDATE CASCADE;
+  ADD CONSTRAINT `detallepedido_ibfk_2` FOREIGN KEY (`idInsumo`) REFERENCES `insumos` (`idInsumo`) ON DELETE NO ACTION ON UPDATE CASCADE,
+  ADD CONSTRAINT `detallepedido_ibfk_3` FOREIGN KEY (`idPedido`) REFERENCES `pedido` (`idPedido`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `detallesalida`
