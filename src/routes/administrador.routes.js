@@ -8,10 +8,8 @@ const router = Router();
 //Rutas
 router.post('/singin', authController.authAdministrador); //Generar jwt para login
 router.post('/testToken', authController.verifyToken, authController.testToken);//Implemenacion jwt como Middleware en rutas -> testToken : Solo ClientAPI
-//router.get('/', administradorController.selAdministrador);//SEL
-/*router.get('/:id',);//GET
-router.post('/',);//INS
-router.put('/:id',);//UPD
-router.delete('/:id',);//DEL*/
+router.get('/', administradorController.selAdministrador);//SEL
+router.get('/:id', administradorController.getAdministrador);//GET
+router.put('/:id', administradorController.updAdministrador);//UPD
 
 export default router;
