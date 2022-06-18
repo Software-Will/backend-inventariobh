@@ -3,7 +3,8 @@ import { methods as entradaController } from './../controllers/entrada.controlle
 
 const router = Router();
 
-router.get('/', entradaController.selEntrada);
+router.get('/', entradaController.selEntradaview);
+router.get('/getIdDetallePedido/:id', entradaController.getIdDetallePedido);
 router.get('/:id', entradaController.getEntrada);
 // router.post();
 

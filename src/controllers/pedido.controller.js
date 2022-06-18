@@ -12,7 +12,7 @@ const selPedido = async (req, res) => {
     }
 }
 
-// GET -> este metodo lo usaras para ver el detalle del pedido y el detalle de la entrda, en este ultimo enviaras el idPedido no idEntrada
+// GET
 const getPedido = async (req, res) => {
     try {
         const { id } = req.params;
