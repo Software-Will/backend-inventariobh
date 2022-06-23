@@ -1,10 +1,19 @@
 import { getConnection } from './../database/database'
 
 // SEL
+// ! Agregar el idProveedor al obj json
 const selPedido = async (req, res) => {
     try {
         const connection = await getConnection();
-        const result = await connection.query('SELECT * FROM pedido_view');
+        // const result = await connection.query('SELECT * FROM pedido_view');
+        // const idProveedorAux = await connection.query('SELECT idProveedor FROM pedido');
+        const [result, idProveedorAux] = await Promise.all([
+            connection.query('SELECT * FROM pedido_view'),
+            connection.query('SELECT idProveedor FROM pedido')
+        ]);
+        for (let i = 0; i < result.length; i++) {
+            result[i].idProveedor = idProveedorAux[i].idProveedor; // Insert Propiedad 
+        }
         res.json(result);
     } catch (err) {
         res.status(500);

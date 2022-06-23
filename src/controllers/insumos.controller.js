@@ -4,7 +4,7 @@ import { getConnection } from './../database/database'
 const viewInsumos = async (req, res) => {
     try {
         const connection = await getConnection(); //Conexion
-        const result = await connection.query('SELECT * FROM insumos_view'); //Consulta
+        const result = await connection.query('SELECT * FROM insumos_view'); 
         //console.log(JSON.stringify(result));
         res.json(result);
     } catch (error) {
@@ -17,7 +17,7 @@ const viewInsumos = async (req, res) => {
 const selInsumos = async (req, res) => {
     try {
         const connection = await getConnection(); //Conexion
-        const result = await connection.query('SELECT * FROM insumos'); //Consulta
+        const result = await connection.query('SELECT * FROM insumos'); 
         //console.log(JSON.stringify(result));
         res.json(result);
     } catch (error) {

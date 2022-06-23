@@ -18,7 +18,7 @@ const getDetallePedidoxPedido = async (req, res) => {
     try {
         const { id } = req.params;
         const connection = await getConnection();
-        const result = await connection.query('SELECT nombreInsumo, cantidadPedido FROM detallepedido_view WHERE idPedido = ?', id);
+        const result = await connection.query('SELECT * FROM detallepedido_view WHERE idPedido = ?', id);
         res.json(result);
     } catch (err) {
         res.status(500);
