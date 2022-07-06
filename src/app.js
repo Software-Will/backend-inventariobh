@@ -9,6 +9,7 @@ import manufacturaRoutes from './routes/manufactura.routes'
 import pedidoRoutes from './routes/pedido.routes'
 import detallePedidoRoutes from './routes/detallePedido.routes'
 import entradaRoutes from './routes/entrada.routes'
+import salidaRoutes from './routes/salida.routes'
 
 const app = express();
 
@@ -34,5 +35,7 @@ app.use('/api/pedido', pedidoRoutes);
 app.use('/api/detallePedido', detallePedidoRoutes);
 
 app.use('/api/entrada', entradaRoutes);
+
+app.use('/api/salida', salidaRoutes);
 
 export default app;

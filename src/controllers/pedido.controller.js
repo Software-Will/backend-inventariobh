@@ -1,7 +1,6 @@
 import { getConnection } from './../database/database'
 
 // SEL
-// ! Agregar el idProveedor al obj json
 const selPedido = async (req, res) => {
     try {
         const connection = await getConnection();
