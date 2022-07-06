@@ -61,11 +61,11 @@ const insPedido = async (req, res) => {
         const idProveedor = auxIdProveedor[0].idProveedor;
         const auxIdAdministrador = await connection.query('SELECT idAdmin FROM administrador WHERE nombreAdmin = ?', data.administrador);
         const idAdmin = auxIdAdministrador[0].idAdmin;
-        const fecha = new Date().toISOString(); // Fecha para el pedido
+        const fecha = await connection.query('SELECT NOW()'); // Fecha para el pedido
         const { descripcion, totalInsumos, costoPedido } = data;
         const auxVal = [idProveedor, idAdmin, idEstado, fecha, descripcion, totalInsumos, costoPedido];
         if (auxVal.includes(undefined)) res.status(400).json({ message: "Verifique los campos para registrar un pedido" });
-        const pedido = { idProveedor, idAdmin, idEstado, fecha, descripcion, totalInsumos, costoPedido };
+        const pedido = { idProveedor, idAdmin, idEstado, fecha: fecha[0]['NOW()'], descripcion, totalInsumos, costoPedido };
         //console.log(pedido);
         const result = await connection.query('INSERT INTO pedido SET ?', pedido);
         res.json(result);
@@ -126,13 +126,13 @@ const recibirPedidoRegistrarEntrada = async (req, res) => {
     try {
         const { idPedido } = req.body;
         const idEstado = 1; // Recibido
-        const fecha = new Date().toISOString(); // Fecha para la entrada
+        const fecha = await connection.query('SELECT NOW()'); // Fecha para la entrada
         const connection = await getConnection();
         const auxPedido = await connection.query('SELECT idAdmin, idProveedor FROM pedido WHERE idPedido = ?', idPedido); // Para obtener datos para la entrada
         const { idAdmin, idProveedor } = auxPedido[0];
         const auxVal = [fecha, idAdmin, idProveedor, idPedido, idEstado];
         if (auxVal.includes(undefined)) res.status(400).json({ message: "Verifique los campos para actualizar el estado del pedido y registrar la entrada" });
-        const entrada = { fecha, idAdmin, idProveedor, idPedido };
+        const entrada = { fecha: fecha[0]['NOW()'], idAdmin, idProveedor, idPedido };
         const pedido = { idEstado };
         await connection.query('UPDATE pedido SET ? WHERE idPedido = ?', [pedido, idPedido]); // Cambiamos el estado del pedido de pendiente a recibido
         await connection.query('INSERT INTO entrada SET ?', entrada); // Registramos la entrada

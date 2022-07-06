@@ -37,8 +37,6 @@ const getSalida = async (req, res) => {
  * }
  * Recuerda que siempre se registra primero la salida y despues se registran los detalles de la salida (insDetalleSalida)
  */
-// const aux = await connection.query('SELECT NOW()');
-//console.log(fecha[0]['NOW()']); // Date.now()
 const insSalida = async (req, res) => {
     try {
         const data = req.body;
@@ -47,11 +45,11 @@ const insSalida = async (req, res) => {
         const idAdmin = auxIdAdministrador[0].idAdmin;
         const auxIdManufactura = await connection.query('SELECT idManufactura FROM manufactura WHERE nombreManufactura = ?', data.manufactura);
         const idManufactura = auxIdManufactura[0].idManufactura;
-        const fecha = new Date().toISOString();
+        const fecha = await connection.query('SELECT NOW()');
         const { totalInsumos, costoSalida } = data;
         const auxVal = [idAdmin, idManufactura, fecha, totalInsumos, costoSalida];
         if (auxVal.includes(undefined)) res.status(400).json({ message: 'Verifique los campos para registrar una salida' });
-        const salida = { idAdmin, idManufactura, fecha, totalInsumos, costoSalida };
+        const salida = { idAdmin, idManufactura, fecha: fecha[0]['NOW()'], totalInsumos, costoSalida };
         // console.log(salida);
         const result = await connection.query('INSERT INTO salida SET ?', salida);
         res.json(result);
