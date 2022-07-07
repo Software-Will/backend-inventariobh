@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 16, 2022 at 06:37 AM
+-- Generation Time: Jul 07, 2022 at 05:59 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -102,16 +102,6 @@ INSERT INTO `detallepedido` (`idDetallePedido`, `idPedido`, `idInsumo`, `cantida
 (18, 2, 2, 500),
 (19, 2, 8, 500),
 (20, 2, 11, 500),
-(31, 3, 2, 10000),
-(32, 3, 11, 13000),
-(33, 3, 2, 10000),
-(34, 3, 11, 13000),
-(35, 3, 2, 10000),
-(36, 3, 11, 13000),
-(37, 3, 3, 1500),
-(38, 3, 8, 1500),
-(39, 3, 2, 10000),
-(40, 3, 11, 13000),
 (41, 4, 2, 10000),
 (42, 4, 2, 10000),
 (43, 4, 2, 10000),
@@ -228,7 +218,12 @@ INSERT INTO `detallepedido` (`idDetallePedido`, `idPedido`, `idInsumo`, `cantida
 (156, 5, 2, 400),
 (157, 5, 3, 10000),
 (158, 5, 8, 3000),
-(159, 5, 2, 400);
+(159, 5, 2, 400),
+(172, 7, 3, 100),
+(173, 7, 8, 100),
+(174, 7, 2, 100),
+(175, 8, 3, 100),
+(176, 8, 8, 100);
 
 -- --------------------------------------------------------
 
@@ -255,8 +250,31 @@ CREATE TABLE `detallesalida` (
   `idDetalleSalida` int(11) NOT NULL,
   `idSalida` int(11) NOT NULL,
   `idInsumo` int(11) NOT NULL,
-  `cantidad` int(11) NOT NULL
+  `cantidadSalida` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `detallesalida`
+--
+
+INSERT INTO `detallesalida` (`idDetalleSalida`, `idSalida`, `idInsumo`, `cantidadSalida`) VALUES
+(12, 11, 3, 100),
+(13, 11, 8, 100);
+
+-- --------------------------------------------------------
+
+--
+-- Stand-in structure for view `detallesalida_view`
+-- (See below for the actual view)
+--
+CREATE TABLE `detallesalida_view` (
+`idDetalleSalida` int(11)
+,`idSalida` int(11)
+,`nombreInsumo` varchar(255)
+,`costoInsumo` decimal(10,2)
+,`cantidadSalida` int(11)
+,`costoDetalle` decimal(20,2)
+);
 
 -- --------------------------------------------------------
 
@@ -277,7 +295,9 @@ CREATE TABLE `entrada` (
 --
 
 INSERT INTO `entrada` (`idEntrada`, `fecha`, `idAdmin`, `idProveedor`, `idPedido`) VALUES
-(1, '2022-06-17 03:32:09', 1, 1, 1);
+(1, '2022-06-17 03:32:09', 1, 1, 1),
+(3, '2022-06-17 21:36:35', 1, 2, 7),
+(4, '2022-06-17 21:52:17', 3, 2, 8);
 
 -- --------------------------------------------------------
 
@@ -334,16 +354,17 @@ CREATE TABLE `insumos` (
 
 INSERT INTO `insumos` (`idInsumo`, `nombreInsumo`, `descripcion`, `stock`, `costo`, `idCategoria`) VALUES
 (1, 'Níquel', '...', 150, '65.00', 1),
-(2, 'Hierro', '...', 180, '35.00', 1),
-(3, 'Cromo', '...', 240, '80.00', 1),
+(2, 'Hierro', '...', 280, '35.00', 1),
+(3, 'Cromo', '...', 340, '80.00', 1),
 (4, 'Silicio', '...', 190, '120.00', 1),
 (5, 'Molibdeno', '...', 200, '45.00', 1),
 (6, 'Carbon', '...', 890, '65.00', 2),
 (7, 'Manganeso', '...', 560, '90.00', 1),
-(8, 'Zinc', '...', 450, '120.00', 1),
+(8, 'Zinc', '...', 550, '120.00', 1),
 (9, 'Azufre', '...', 965, '45.00', 2),
 (10, 'Fósforo', '...', 480, '70.00', 2),
-(11, 'Arrabio', '...', 700, '35.00', 1);
+(11, 'Arrabio', '...', 700, '35.00', 1),
+(21, 'TestInsumo', 'Esto es un test', 0, '0.00', 1);
 
 -- --------------------------------------------------------
 
@@ -407,10 +428,12 @@ CREATE TABLE `pedido` (
 
 INSERT INTO `pedido` (`idPedido`, `idProveedor`, `idAdmin`, `idEstado`, `fecha`, `descripcion`, `totalInsumos`, `costoPedido`) VALUES
 (1, 4, 1, 1, '2022-06-15 03:26:59', '1111111111', 17, '1578000.00'),
-(2, 1, 1, 2, '2022-06-15 22:53:11', '...', 17, '5000.00'),
-(3, 4, 3, 2, '2022-06-16 01:27:18', '...', 3, '600.00'),
+(2, 1, 1, 1, '2022-06-15 22:53:11', '...', 17, '5000.00'),
 (4, 4, 3, 2, '2022-06-16 01:43:36', '...', 20, '600.00'),
-(5, 4, 1, 2, '2022-06-16 02:05:03', '...', 20, '600.00');
+(5, 4, 1, 2, '2022-06-16 02:05:03', '...', 20, '600.00'),
+(7, 2, 1, 1, '2022-06-17 20:46:23', 'pruebaRecibirPedido', 3, '1000.00'),
+(8, 2, 3, 1, '2022-06-17 21:51:23', 'pruebaRecibirPedido222222', 2, '1000.00'),
+(9, 2, 3, 2, '2022-07-06 17:39:16', 'pruebaRecibirPedido222222', 2, '1000.00');
 
 -- --------------------------------------------------------
 
@@ -465,12 +488,34 @@ INSERT INTO `proveedores` (`idProveedor`, `nombreProveedor`, `ruc`, `telefono`, 
 
 CREATE TABLE `salida` (
   `idSalida` int(11) NOT NULL,
-  `fecha` datetime NOT NULL,
   `idAdmin` int(11) NOT NULL,
   `idManufactura` int(11) NOT NULL,
-  `cantidadInsumos` int(11) NOT NULL,
-  `valorSalida` decimal(10,2) NOT NULL
+  `fecha` datetime NOT NULL,
+  `totalInsumos` int(11) NOT NULL,
+  `costoSalida` decimal(10,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `salida`
+--
+
+INSERT INTO `salida` (`idSalida`, `idAdmin`, `idManufactura`, `fecha`, `totalInsumos`, `costoSalida`) VALUES
+(11, 1, 1, '2022-07-06 22:58:09', 2, '1000.00');
+
+-- --------------------------------------------------------
+
+--
+-- Stand-in structure for view `salida_view`
+-- (See below for the actual view)
+--
+CREATE TABLE `salida_view` (
+`idSalida` int(11)
+,`nombreManufactura` varchar(255)
+,`nombreAdmin` varchar(20)
+,`fecha` datetime
+,`totalInsumos` int(11)
+,`costoSalida` decimal(10,2)
+);
 
 -- --------------------------------------------------------
 
@@ -480,6 +525,15 @@ CREATE TABLE `salida` (
 DROP TABLE IF EXISTS `detallepedido_view`;
 
 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `detallepedido_view`  AS SELECT `d`.`idDetallePedido` AS `idDetallePedido`, `p`.`idPedido` AS `idPedido`, `i`.`nombreInsumo` AS `nombreInsumo`, `i`.`costo` AS `costoInsumo`, `d`.`cantidadPedido` AS `cantidadPedido`, `i`.`costo`* `d`.`cantidadPedido` AS `costoDetalle` FROM ((`detallepedido` `d` join `pedido` `p`) join `insumos` `i` on(`d`.`idPedido` = `p`.`idPedido` and `d`.`idInsumo` = `i`.`idInsumo`))  ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `detallesalida_view`
+--
+DROP TABLE IF EXISTS `detallesalida_view`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `detallesalida_view`  AS SELECT `d`.`idDetalleSalida` AS `idDetalleSalida`, `s`.`idSalida` AS `idSalida`, `i`.`nombreInsumo` AS `nombreInsumo`, `i`.`costo` AS `costoInsumo`, `d`.`cantidadSalida` AS `cantidadSalida`, `i`.`costo`* `d`.`cantidadSalida` AS `costoDetalle` FROM ((`detallesalida` `d` join `salida` `s`) join `insumos` `i` on(`d`.`idSalida` = `s`.`idSalida` and `d`.`idInsumo` = `i`.`idInsumo`))  ;
 
 -- --------------------------------------------------------
 
@@ -507,6 +561,15 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 DROP TABLE IF EXISTS `pedido_view`;
 
 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `pedido_view`  AS SELECT `p`.`idPedido` AS `idPedido`, `o`.`nombreProveedor` AS `proveedor`, `a`.`nombreAdmin` AS `administrador`, `p`.`fecha` AS `fecha`, `p`.`descripcion` AS `descripcion`, `p`.`totalInsumos` AS `totalInsumos`, `p`.`costoPedido` AS `costoPedido`, `e`.`estado` AS `estado` FROM (((`pedido` `p` join `proveedores` `o`) join `estado` `e`) join `administrador` `a` on(`p`.`idProveedor` = `o`.`idProveedor` and `p`.`idEstado` = `e`.`idEstado` and `p`.`idAdmin` = `a`.`idAdmin`))  ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `salida_view`
+--
+DROP TABLE IF EXISTS `salida_view`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `salida_view`  AS SELECT `s`.`idSalida` AS `idSalida`, `m`.`nombreManufactura` AS `nombreManufactura`, `a`.`nombreAdmin` AS `nombreAdmin`, `s`.`fecha` AS `fecha`, `s`.`totalInsumos` AS `totalInsumos`, `s`.`costoSalida` AS `costoSalida` FROM ((`salida` `s` join `manufactura` `m`) join `administrador` `a` on(`s`.`idManufactura` = `m`.`idManufactura` and `s`.`idAdmin` = `a`.`idAdmin`))  ;
 
 --
 -- Indexes for dumped tables
@@ -611,19 +674,19 @@ ALTER TABLE `categoria`
 -- AUTO_INCREMENT for table `detallepedido`
 --
 ALTER TABLE `detallepedido`
-  MODIFY `idDetallePedido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=172;
+  MODIFY `idDetallePedido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=177;
 
 --
 -- AUTO_INCREMENT for table `detallesalida`
 --
 ALTER TABLE `detallesalida`
-  MODIFY `idDetalleSalida` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idDetalleSalida` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `entrada`
 --
 ALTER TABLE `entrada`
-  MODIFY `idEntrada` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idEntrada` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `estado`
@@ -635,7 +698,7 @@ ALTER TABLE `estado`
 -- AUTO_INCREMENT for table `insumos`
 --
 ALTER TABLE `insumos`
-  MODIFY `idInsumo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `idInsumo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `manufactura`
@@ -647,7 +710,7 @@ ALTER TABLE `manufactura`
 -- AUTO_INCREMENT for table `pedido`
 --
 ALTER TABLE `pedido`
-  MODIFY `idPedido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `idPedido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `proveedores`
@@ -659,7 +722,7 @@ ALTER TABLE `proveedores`
 -- AUTO_INCREMENT for table `salida`
 --
 ALTER TABLE `salida`
-  MODIFY `idSalida` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idSalida` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- Constraints for dumped tables
@@ -676,8 +739,8 @@ ALTER TABLE `detallepedido`
 -- Constraints for table `detallesalida`
 --
 ALTER TABLE `detallesalida`
-  ADD CONSTRAINT `detallesalida_ibfk_1` FOREIGN KEY (`idSalida`) REFERENCES `salida` (`idSalida`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `detallesalida_ibfk_2` FOREIGN KEY (`idInsumo`) REFERENCES `insumos` (`idInsumo`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `detallesalida_ibfk_2` FOREIGN KEY (`idInsumo`) REFERENCES `insumos` (`idInsumo`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `detallesalida_ibfk_3` FOREIGN KEY (`idSalida`) REFERENCES `salida` (`idSalida`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `entrada`
