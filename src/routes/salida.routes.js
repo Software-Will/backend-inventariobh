@@ -7,5 +7,7 @@ const router = Router();
 router.get('/', salidaController.selSalida);
 router.get('/:id', salidaController.getSalida);
 router.post('/', salidaController.insSalida);
+router.put('/:id', salidaController.updSalida);
+router.delete('/:id', salidaController.delSalida);
 
 export default router;

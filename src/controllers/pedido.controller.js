@@ -105,6 +105,9 @@ const delPedido = async (req, res) => {
     try {
         const { id } = req.params;
         const connection = await getConnection();
+        const estado = await connection.query('SELECT idEstado FROM pedido WHERE idPedido = ?', id);
+        const idEstado = estado[0].idEstado;
+        if (idEstado === 1) return res.status(400).json({ message: 'No puede eliminar este pedido' }); // Si el pedido fue atendido no se podra eliminar
         const result = await connection.query('DELETE FROM pedido WHERE idPedido = ?', id);
         res.json(result);
     } catch (error) {
