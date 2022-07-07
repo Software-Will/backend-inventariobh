@@ -70,7 +70,7 @@ const insDetallePedido = async (req, res) => {
             //console.log(detallepedido);
             await connection.query('INSERT INTO detallepedido SET ?', detallepedido); //Insert data object
         }
-        res.json('Detalles insertados :)');
+        res.json('Detalles del pedido insertados :)');
     } catch (err) {
         res.status(500);
         res.send(err.message);

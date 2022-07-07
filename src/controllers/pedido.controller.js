@@ -172,5 +172,3 @@ export const methods = {
     delPedido,
     recibirPedidoRegistrarEntrada
 }
-
-//! La fecha no se esta generando con el UTC de la region, refactorizar 

@@ -3,7 +3,7 @@ import { getConnection } from './../database/database'
 const selSalida = async (req, res) => {
     try {
         const connection = await getConnection();
-        const result = await connection.query('SELECT * FROM salida');
+        const result = await connection.query('SELECT * FROM salida_view');
         res.json(result);
     } catch (error) {
         res.status(500);
@@ -15,7 +15,7 @@ const getSalida = async (req, res) => {
     try {
         const { id } = req.params;
         const connection = await getConnection();
-        const result = await connection.query('SELECT * FROM salida WHERE idSalida = ?', id);
+        const result = await connection.query('SELECT * FROM salida_view WHERE idSalida = ?', id);
         res.json(result);
     } catch (error) {
         res.status(500);
@@ -59,6 +59,15 @@ const insSalida = async (req, res) => {
     }
 }
 
+/**
+ * Solo se podra actualizar la manufactura de una salida
+ */
+
+
+
+/**
+ * Se borra una salida y se restaura el stock
+ */
 
 export const methods = {
     selSalida,
