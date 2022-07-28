@@ -1,0 +1,4 @@
+Para tener actualizado el proyecto realice un 'git pull' en su consola, despues de ello un 'npm install'
+Para estas acciones debera tener instalado git y node en su computador
+Para correr el proyecto debe tener XAMPP instalado y la base de datos exportada se encuentra en la carpeta assets
+El comando para correr el proyecto es 'npm run dev'

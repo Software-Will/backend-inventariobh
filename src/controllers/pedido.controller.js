@@ -129,8 +129,8 @@ const recibirPedidoRegistrarEntrada = async (req, res) => {
     try {
         const { idPedido } = req.body;
         const idEstado = 1; // Recibido
-        const fecha = await connection.query('SELECT NOW()'); // Fecha para la entrada
         const connection = await getConnection();
+        const fecha = await connection.query('SELECT NOW()'); // Fecha para la entrada
         const auxPedido = await connection.query('SELECT idAdmin, idProveedor FROM pedido WHERE idPedido = ?', idPedido); // Para obtener datos para la entrada
         const { idAdmin, idProveedor } = auxPedido[0];
         const auxVal = [fecha, idAdmin, idProveedor, idPedido, idEstado];
