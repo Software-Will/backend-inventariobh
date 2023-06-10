@@ -15,7 +15,7 @@ const getDetalleSalida = async (req, res) => {
     try {
         const { id } = req.params;
         const connection = await getConnection();
-        const result = await connection.query('SELECT * FROM detalleSalida_view WHERE idDetalleSalida = ?', id);
+        const result = await connection.query('SELECT * FROM detalleSalida_view WHERE idSalida = ?', id);
         res.json(result);
     } catch (error) {
         res.status(500);
