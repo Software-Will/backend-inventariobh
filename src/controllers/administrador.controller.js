@@ -46,9 +46,33 @@ const updAdministrador = async (req, res) => {
     }
 };
 
+// CAMBIO CONTRASEÑA
+/**
+* Para lo cual solo se requiere dos password
+*/
+const updPassword = async (req, res) => {
+    try {
+        console.log(req.body);
+        const { idAdmin, newPassword } = req.body;
+        const auxVal = [idAdmin, newPassword];
+        if (auxVal.includes(undefined)) res.status(400).json({ message: "Verifique los campos para actualizar un administrador" });
+        const connection = await getConnection();
+        const result = await connection.query(
+            "UPDATE administrador SET password = ? WHERE idAdmin = ?",
+            [newPassword, idAdmin]
+        );
+        res.json(result);
+    } catch (error) {
+        res.status(500);
+        res.send(err.message);
+    }
+
+}
+
 
 export const methods = {
     selAdministrador,
     getAdministrador,
-    updAdministrador
+    updAdministrador,
+    updPassword
 };

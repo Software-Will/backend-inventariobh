@@ -11,5 +11,6 @@ router.post('/testToken', authController.verifyToken, authController.testToken);
 router.get('/', administradorController.selAdministrador);//SEL
 router.get('/:id', administradorController.getAdministrador);//GET
 router.put('/:id', administradorController.updAdministrador);//UPD
+router.post('/cambioPassword', administradorController.updPassword);
 
 export default router;
