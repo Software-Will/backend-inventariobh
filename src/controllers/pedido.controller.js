@@ -13,7 +13,7 @@ const selPedido = async (req, res) => {
         for (let i = 0; i < result.length; i++) {
             result[i].idProveedor = idProveedorAux[i].idProveedor; // Insert Propiedad 
         }
-        res.json(result);
+        res.json(result[0]);
     } catch (err) {
         res.status(500);
         res.send(err.message);
@@ -26,7 +26,7 @@ const getPedido = async (req, res) => {
         const { id } = req.params;
         const connection = await getConnection();
         const result = await connection.query('SELECT * FROM pedido_view WHERE idPedido = ?', id);
-        res.json(result);
+        res.json(result[0]);
     } catch (err) {
         res.status(500);
         res.send(err.message);

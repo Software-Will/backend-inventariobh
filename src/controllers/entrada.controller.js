@@ -8,7 +8,7 @@ const selEntradaview = async (req, res) => {
     try {
         const connection = await getConnection();
         const result = await connection.query('SELECT * FROM entrada_view');
-        res.json(result);
+        res.json(result[0]);
     } catch (error) {
         res.status(500);
         res.send(error.message);
@@ -23,7 +23,7 @@ const getIdDetallePedido = async (req, res) => {
         const { id } = req.params;
         const connection = await getConnection();
         const result = await connection.query('SELECT idPedido FROM entrada where idEntrada = ?', id);
-        res.json(result);
+        res.json(result[0]);
     } catch (error) {
         res.status(500);
         res.send(error.message);
@@ -36,7 +36,7 @@ const getEntrada = async (req, res) => {
         const { id } = req.params;
         const connection = await getConnection();
         const result = await connection.query('SELECT * FROM entrada_view WHERE idEntrada = ?', id);
-        res.json(result);
+        res.json(result[0]);
     } catch (error) {
         res.status(500);
         res.send(error.message);

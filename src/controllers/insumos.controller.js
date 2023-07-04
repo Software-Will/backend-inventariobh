@@ -6,7 +6,7 @@ const viewInsumos = async (req, res) => {
         const connection = await getConnection(); //Conexion
         const result = await connection.query('SELECT * FROM insumos_view');
         //console.log(JSON.stringify(result));
-        res.json(result);
+        res.json(result[0]);
     } catch (error) {
         res.status(500);
         res.send(error.message);
@@ -19,7 +19,7 @@ const selInsumos = async (req, res) => {
         const connection = await getConnection(); //Conexion
         const result = await connection.query('SELECT * FROM insumos');
         //console.log(JSON.stringify(result));
-        res.json(result);
+        res.json(result[0]);
     } catch (error) {
         res.status(500);
         res.send(error.message);
@@ -32,7 +32,7 @@ const getInsumos = async (req, res) => {
         const { id } = req.params;
         const connection = await getConnection();
         const result = await connection.query('SELECT * FROM insumos WHERE idInsumo = ?', id);
-        res.json(result);
+        res.json(result[0]);
     } catch (error) {
         res.status(500);
         res.send(error.message);

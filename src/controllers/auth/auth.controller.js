@@ -11,21 +11,33 @@ const authAdministrador = async (req, res) => {
         res.status(400).json({ message: "Verifique los campos para validar al administrador" });
     };
     const connection = await getConnection();
-    const result = connection.query('SELECT * FROM administrador WHERE username = ? AND password = ?',
-        [username, password],
-        (err, rows, fields) => {
-            if (!err) {
-                if (rows.length > 0) {
-                    let data = JSON.stringify(rows[0]); //Format -> Data -> JSON
-                    const token = jwt.sign(data, process.env.KEY_TOKEN); //Encriptamos la informacion
-                    res.json({ token }); //Devolvemos el token
-                    console.log({ token });
-                } else {
-                    res.send('Nombre de usuario o contraseña incorrecto');
-                    //res.send(err.message);
-                };
-            };
-        });
+    const result = await connection.query('SELECT * FROM administrador WHERE username = ? AND password = ?',
+        [username, password]);
+
+    if (result) {
+        if (result[0].length > 0) {
+            let data = JSON.stringify(result[0]); //Format -> Data -> JSON
+            const token = jwt.sign(data, process.env.KEY_TOKEN); //Encriptamos la informacion
+            res.json({ token }); //Devolvemos el token
+            console.log({ token });
+        } else {
+            res.send('Nombre de usuario o contraseña incorrecto');
+        }
+    }
+    // (err, rows, fields) => {
+    // if (!err) {
+    //     if (rows.length > 0) {
+    //         let data = JSON.stringify(rows[0]); //Format -> Data -> JSON
+    //         const token = jwt.sign(data, process.env.KEY_TOKEN); //Encriptamos la informacion
+    //         res.json({ token }); //Devolvemos el token
+    //         console.log({ token });
+    //     } else {
+    //         res.send('Nombre de usuario o contraseña incorrecto');
+    //         //res.send(err.message);
+    //     };
+    // };
+    // });
+    // console.log(result);
 };
 
 //Validacion del token generado para acceder a los verbos del api

@@ -5,7 +5,7 @@ const selManufactura = async (req, res) => {
     try {
         const connection = await getConnection();
         const result = await connection.query('SELECT * FROM manufactura');
-        res.json(result);
+        res.json(result[0]);
     } catch (err) {
         res.status(500);
         res.send(err.message);
@@ -18,7 +18,7 @@ const getManufactura = async (req, res) => {
         const { id } = req.params;
         const connection = await getConnection();
         const result = await connection.query('SELECT * FROM manufactura WHERE idManufactura = ?', id);
-        res.json(result);
+        res.json(result[0]);
     } catch (err) {
         res.status(500);
         res.send(err.message);

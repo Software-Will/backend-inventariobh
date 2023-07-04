@@ -4,7 +4,7 @@ const selDetallePedido = async (req, res) => {
     try {
         const connection = await getConnection();
         const result = await connection.query('SELECT * FROM detallepedido_view');
-        res.json(result);
+        res.json(result[0]);
     } catch (err) {
         res.status(500);
         res.send(err.message);
@@ -19,7 +19,7 @@ const getDetallePedidoxPedido = async (req, res) => {
         const { id } = req.params;
         const connection = await getConnection();
         const result = await connection.query('SELECT * FROM detallepedido_view WHERE idPedido = ?', id);
-        res.json(result);
+        res.json(result[0]);
     } catch (err) {
         res.status(500);
         res.send(err.message);

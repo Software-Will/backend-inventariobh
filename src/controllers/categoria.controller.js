@@ -8,7 +8,7 @@ const getIdByNomCat = async (req, res) => {
         //console.log(nombreCat);
         const connection = await getConnection();
         const result = await connection.query('SELECT idCategoria FROM categoria WHERE nombreCategoria = ?', nombreCat);
-        res.json(result);
+        res.json(result[0]);
     } catch (error) {
         res.status(500);
         res.send(error.message);
@@ -20,7 +20,7 @@ const selCategoria = async (req, res) => {
     try {
         const connection = await getConnection();
         const result = await connection.query('SELECT * FROM categoria');
-        res.json(result);
+        res.json(result[0]);
     } catch (err) {
         res.status(500);
         res.send(err.message);
@@ -33,7 +33,7 @@ const getCategoria = async (req, res) => {
         const { id } = req.params;
         const connection = await getConnection();
         const result = await connection.query('SELECT * FROM categoria WHERE idCategoria = ?', id);
-        res.json(result);
+        res.json(result[0]);
     } catch (err) {
         res.status(500);
         res.send(err.message);

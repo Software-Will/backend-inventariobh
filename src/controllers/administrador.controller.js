@@ -6,7 +6,7 @@ const selAdministrador = async (req, res) => {
     try {
         const connection = await getConnection();
         const result = await connection.query('SELECT * FROM administrador');
-        res.json(result);
+        res.json(result[0]);
     } catch (err) {
         res.status(500);
         res.send(err.message);
@@ -19,7 +19,7 @@ const getAdministrador = async (req, res) => {
         const { id } = req.params;
         const connection = await getConnection();
         const result = await connection.query('SELECT * FROM administrador WHERE idAdmin = ?', id);
-        res.json(result);
+        res.json(result[0]);
     } catch (err) {
         res.status(500);
         res.send(err.message);

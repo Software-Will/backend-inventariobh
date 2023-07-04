@@ -1,13 +1,14 @@
-import mysql from 'promise-mysql'
+import { createPool } from 'mysql2/promise'
 import config from './../config'
 import colors from 'colors'
 
 //Conexion
-const connection = mysql.createConnection({
-    host: config.host,
-    database: config.database,
+const connection = createPool({
     user: config.user,
-    password: config.password
+    password: config.password,
+    host: config.host,
+    port: config.port,
+    database: config.database,
 });
 
 //Variable Global -> Acceso a la bd

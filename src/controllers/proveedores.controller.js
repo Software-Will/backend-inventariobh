@@ -6,7 +6,7 @@ const selProveedores = async (req, res) => {
         const connection = await getConnection(); //Conexion
         const result = await connection.query('SELECT * FROM proveedores'); //Consulta
         //console.log(JSON.stringify(result));
-        res.json(result); //Enviamos el resultado de la consulta en formato json
+        res.json(result[0]); //Enviamos el resultado de la consulta en formato json
     } catch (error) {
         res.status(500);
         res.send(error.message);
@@ -20,7 +20,7 @@ const getProveedores = async (req, res) => {
         const connection = await getConnection();
         const result = await connection.query("SELECT * FROM proveedores WHERE idProveedor = ?", id);
         //console.log(JSON.stringify(result));
-        res.json(result);
+        res.json(result[0]);
     } catch (error) {
         res.status(500);
         res.send(error.message);
