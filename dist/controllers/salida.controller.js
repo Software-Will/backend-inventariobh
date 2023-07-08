@@ -132,13 +132,13 @@ var insSalida = /*#__PURE__*/function () {
 
           case 7:
             auxIdAdministrador = _context3.sent;
-            idAdmin = auxIdAdministrador[0].idAdmin;
+            idAdmin = auxIdAdministrador[0][0].idAdmin;
             _context3.next = 11;
             return connection.query('SELECT idManufactura FROM manufactura WHERE nombreManufactura = ?', data.manufactura);
 
           case 11:
             auxIdManufactura = _context3.sent;
-            idManufactura = auxIdManufactura[0].idManufactura;
+            idManufactura = auxIdManufactura[0][0].idManufactura;
             _context3.next = 15;
             return connection.query('SELECT NOW()');
 
@@ -152,7 +152,7 @@ var insSalida = /*#__PURE__*/function () {
             salida = {
               idAdmin: idAdmin,
               idManufactura: idManufactura,
-              fecha: fecha[0]['NOW()'],
+              fecha: fecha[0][0]['NOW()'],
               totalInsumos: totalInsumos,
               costoSalida: costoSalida
             }; // console.log(salida);
@@ -209,7 +209,7 @@ var updSalida = /*#__PURE__*/function () {
 
           case 8:
             auxIdManufactura = _context4.sent;
-            idManufactura = auxIdManufactura[0].idManufactura;
+            idManufactura = auxIdManufactura[0][0].idManufactura;
             salida = {
               idManufactura: idManufactura
             };

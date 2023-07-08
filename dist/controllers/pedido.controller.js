@@ -161,19 +161,21 @@ var insPedido = /*#__PURE__*/function () {
 
           case 8:
             auxIdProveedor = _context3.sent;
-            idProveedor = auxIdProveedor[0].idProveedor;
+            // console.log(auxIdProveedor[0][0].idProveedor);
+            idProveedor = auxIdProveedor[0][0].idProveedor;
             _context3.next = 12;
             return connection.query('SELECT idAdmin FROM administrador WHERE nombreAdmin = ?', data.administrador);
 
           case 12:
             auxIdAdministrador = _context3.sent;
-            idAdmin = auxIdAdministrador[0].idAdmin;
+            idAdmin = auxIdAdministrador[0][0].idAdmin;
             _context3.next = 16;
             return connection.query('SELECT NOW()');
 
           case 16:
             fecha = _context3.sent;
             // Fecha para el pedido
+            // console.log(fecha[0][0]['NOW()']);
             descripcion = data.descripcion, totalInsumos = data.totalInsumos, costoPedido = data.costoPedido;
             auxVal = [idProveedor, idAdmin, idEstado, fecha, descripcion, totalInsumos, costoPedido];
             if (auxVal.includes(undefined)) res.status(400).json({
@@ -183,33 +185,33 @@ var insPedido = /*#__PURE__*/function () {
               idProveedor: idProveedor,
               idAdmin: idAdmin,
               idEstado: idEstado,
-              fecha: fecha[0]['NOW()'],
+              fecha: fecha[0][0]['NOW()'],
               descripcion: descripcion,
               totalInsumos: totalInsumos,
               costoPedido: costoPedido
-            }; //console.log(pedido);
-
-            _context3.next = 23;
+            };
+            console.log(pedido);
+            _context3.next = 24;
             return connection.query('INSERT INTO pedido SET ?', pedido);
 
-          case 23:
+          case 24:
             result = _context3.sent;
             res.json(result);
-            _context3.next = 31;
+            _context3.next = 32;
             break;
 
-          case 27:
-            _context3.prev = 27;
+          case 28:
+            _context3.prev = 28;
             _context3.t0 = _context3["catch"](0);
             res.status(500);
             res.send(_context3.t0.message);
 
-          case 31:
+          case 32:
           case "end":
             return _context3.stop();
         }
       }
-    }, _callee3, null, [[0, 27]]);
+    }, _callee3, null, [[0, 28]]);
   }));
 
   return function insPedido(_x5, _x6) {
@@ -231,43 +233,47 @@ var updPedido = /*#__PURE__*/function () {
           case 0:
             _context4.prev = 0;
             id = req.params.id;
-            _req$body = req.body, proveedor = _req$body.proveedor, descripcion = _req$body.descripcion;
-            _context4.next = 5;
+            _req$body = req.body, proveedor = _req$body.proveedor, descripcion = _req$body.descripcion; // console.log(proveedor);
+
+            console.log(proveedor);
+            _context4.next = 6;
             return (0, _database.getConnection)();
 
-          case 5:
+          case 6:
             connection = _context4.sent;
-            _context4.next = 8;
-            return connection.query('SELECT idProveedor FROM proveedores WHERE nombreProveedor = ?', proveedor);
+            _context4.next = 9;
+            return connection.query("SELECT idProveedor FROM proveedores WHERE nombreProveedor = '".concat(proveedor, "'"));
 
-          case 8:
+          case 9:
             auxIdPedido = _context4.sent;
-            idProveedor = auxIdPedido[0].idProveedor;
+            // console.log(auxIdPedido);
+            idProveedor = auxIdPedido[0][0].idProveedor;
+            console.log(idProveedor);
             pedido = {
               idProveedor: idProveedor,
               descripcion: descripcion
             };
-            _context4.next = 13;
+            _context4.next = 15;
             return connection.query('UPDATE pedido SET ? WHERE idPedido = ?', [pedido, id]);
 
-          case 13:
+          case 15:
             result = _context4.sent;
             res.json(result);
-            _context4.next = 21;
+            _context4.next = 23;
             break;
 
-          case 17:
-            _context4.prev = 17;
+          case 19:
+            _context4.prev = 19;
             _context4.t0 = _context4["catch"](0);
             res.status(500);
             res.send(_context4.t0.message);
 
-          case 21:
+          case 23:
           case "end":
             return _context4.stop();
         }
       }
-    }, _callee4, null, [[0, 17]]);
+    }, _callee4, null, [[0, 19]]);
   }));
 
   return function updPedido(_x7, _x8) {
