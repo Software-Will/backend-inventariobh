@@ -58,15 +58,17 @@ const insPedido = async (req, res) => {
         const idEstado = 2;
         const connection = await getConnection();
         const auxIdProveedor = await connection.query('SELECT idProveedor FROM proveedores WHERE nombreProveedor = ?', data.proveedor);
-        const idProveedor = auxIdProveedor[0].idProveedor;
+        // console.log(auxIdProveedor[0][0].idProveedor);
+        const idProveedor = auxIdProveedor[0][0].idProveedor;
         const auxIdAdministrador = await connection.query('SELECT idAdmin FROM administrador WHERE nombreAdmin = ?', data.administrador);
-        const idAdmin = auxIdAdministrador[0].idAdmin;
+        const idAdmin = auxIdAdministrador[0][0].idAdmin;
         const fecha = await connection.query('SELECT NOW()'); // Fecha para el pedido
+        // console.log(fecha[0][0]['NOW()']);
         const { descripcion, totalInsumos, costoPedido } = data;
         const auxVal = [idProveedor, idAdmin, idEstado, fecha, descripcion, totalInsumos, costoPedido];
         if (auxVal.includes(undefined)) res.status(400).json({ message: "Verifique los campos para registrar un pedido" });
-        const pedido = { idProveedor, idAdmin, idEstado, fecha: fecha[0]['NOW()'], descripcion, totalInsumos, costoPedido };
-        //console.log(pedido);
+        const pedido = { idProveedor, idAdmin, idEstado, fecha: fecha[0][0]['NOW()'], descripcion, totalInsumos, costoPedido };
+        console.log(pedido);
         const result = await connection.query('INSERT INTO pedido SET ?', pedido);
         res.json(result);
     } catch (err) {
@@ -80,12 +82,17 @@ const insPedido = async (req, res) => {
  * Upd Pedido -> Proveedor :: envia el nombre no id - Descripcion
  */
 const updPedido = async (req, res) => {
+    // console.log(req.body);
     try {
         const { id } = req.params;
         const { proveedor, descripcion } = req.body;
+        // console.log(proveedor);
+        console.log(proveedor);
         const connection = await getConnection();
-        const auxIdPedido = await connection.query('SELECT idProveedor FROM proveedores WHERE nombreProveedor = ?', proveedor);
-        const idProveedor = auxIdPedido[0].idProveedor;
+        const auxIdPedido = await connection.query(`SELECT idProveedor FROM proveedores WHERE nombreProveedor = '${proveedor}'`);
+        // console.log(auxIdPedido);
+        const idProveedor = auxIdPedido[0][0].idProveedor;
+        console.log(idProveedor);
         const pedido = { idProveedor, descripcion };
         const result = await connection.query('UPDATE pedido SET ? WHERE idPedido = ?', [pedido, id]);
         res.json(result);

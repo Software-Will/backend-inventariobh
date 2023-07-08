@@ -42,14 +42,14 @@ const insSalida = async (req, res) => {
         const data = req.body;
         const connection = await getConnection();
         const auxIdAdministrador = await connection.query('SELECT idAdmin FROM administrador WHERE nombreAdmin = ?', data.administrador);
-        const idAdmin = auxIdAdministrador[0].idAdmin;
+        const idAdmin = auxIdAdministrador[0][0].idAdmin;
         const auxIdManufactura = await connection.query('SELECT idManufactura FROM manufactura WHERE nombreManufactura = ?', data.manufactura);
-        const idManufactura = auxIdManufactura[0].idManufactura;
+        const idManufactura = auxIdManufactura[0][0].idManufactura;
         const fecha = await connection.query('SELECT NOW()');
         const { totalInsumos, costoSalida } = data;
         const auxVal = [idAdmin, idManufactura, fecha, totalInsumos, costoSalida];
         if (auxVal.includes(undefined)) res.status(400).json({ message: 'Verifique los campos para registrar una salida' });
-        const salida = { idAdmin, idManufactura, fecha: fecha[0]['NOW()'], totalInsumos, costoSalida };
+        const salida = { idAdmin, idManufactura, fecha: fecha[0][0]['NOW()'], totalInsumos, costoSalida };
         // console.log(salida);
         const result = await connection.query('INSERT INTO salida SET ?', salida);
         res.json(result);
@@ -68,7 +68,7 @@ const updSalida = async (req, res) => {
         const { manufactura } = req.body;
         const connection = await getConnection();
         const auxIdManufactura = await connection.query('SELECT idManufactura FROM manufactura WHERE nombreManufactura = ?', manufactura);
-        const idManufactura = auxIdManufactura[0].idManufactura;
+        const idManufactura = auxIdManufactura[0][0].idManufactura;
         const salida = { idManufactura };
         const result = await connection.query('UPDATE salida SET ? WHERE idSalida = ?', [salida, id]);
         res.json(result);
